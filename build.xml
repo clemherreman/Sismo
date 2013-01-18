@@ -54,6 +54,21 @@
   </exec>
  </target>
 
+    <target name="update-vendors" description="Update vendors">
+        <exec executable="bash">
+            <arg value="-c" />
+            <arg value="curl http://getcomposer.org/installer | php" />
+        </exec>
+
+        <exec executable="php">
+            <arg value="composer.phar" />
+            <arg value="install" />
+            <arg value="--dev"/>
+            <arg value="--prefer-dist"/>
+        </exec>
+    </target>
+
+
  <target name="pdepend" description="Calculate software metrics using PHP_Depend">
   <exec executable="pdepend">
    <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
